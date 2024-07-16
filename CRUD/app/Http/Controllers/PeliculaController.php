@@ -9,8 +9,9 @@ class PeliculaController extends Controller
 {
     // Metodo para mostrar todas las peliculas.
     public function index(){
-        $peliculas = Pelicula::orderBy('fecha_publicacion', 'desc')->get();
-        return $peliculas;
+        $peliculas = Pelicula::orderBy('fecha_publicacion', 'desc')->paginate(10);
+
+        return view('peliculas.index', compact('peliculas'));
     }
 
     // Metodo para mostrar el formulario de creación de peliculas.

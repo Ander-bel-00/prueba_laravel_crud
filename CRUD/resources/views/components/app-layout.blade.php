@@ -12,7 +12,7 @@
 </head>
 <body>
     <header></header>
-    {{ $slot}}
+    {{ $slot }}
     <footer></footer>
 </body>
 </html>
