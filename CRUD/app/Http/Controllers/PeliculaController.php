@@ -9,7 +9,7 @@ class PeliculaController extends Controller
 {
     // Metodo para mostrar todas las peliculas.
     public function index(){
-        $peliculas = Pelicula::orderBy('fecha_publicacion', 'desc');
+        $peliculas = Pelicula::orderBy('fecha_publicacion', 'desc')->get();
         return $peliculas;
     }
 
@@ -22,8 +22,12 @@ class PeliculaController extends Controller
     public function store(Request $request){
         $pelicula = new Pelicula();
         $pelicula->titulo = $request->titulo;
+        $pelicula->categoria = $request->categoria;
+        $pelicula->sinopsis = $request->sinopsis;
         $pelicula->fecha_publicacion = $request->fecha_publicacion;
+        
         $pelicula->save();
-        return $pelicula;
+
+        return redirect('/peliculas');
     }
 }
