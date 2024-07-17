@@ -15,7 +15,7 @@ class Pelicula extends Model
     protected function casts(): array
     {
         return [
-            'fecha_publicacion' => 'datetime', 
+            'fecha_publicacion' => 'date:d/m/Y', 
         ];
     }
 
