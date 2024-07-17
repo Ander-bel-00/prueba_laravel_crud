@@ -8,7 +8,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('/peliculas', PeliculaController::class);
+Route::resource('/peliculas', PeliculaController::class)->names('peliculas');
 
 
 // Route::get('/prueba', function() {

@@ -31,4 +31,32 @@ class PeliculaController extends Controller
 
         return redirect('/peliculas');
     }
+
+        // Metodo para mostrar una pelicula.
+        public function show($pelicula)
+        {
+            // Buscar una pelicula por id (el id se pasa desde la vista peliculas).
+            $pelicula = Pelicula::find($pelicula);
+    
+            // Pasar variables del metodo a la vista.
+            return view('peliculas.show', [
+                // Pasar variable con el nombre post y con el valor que se le defina a esa variable.
+                'pelicula' => $pelicula,
+    
+                // Otra forma en lugar de especicar el array: ,compact('post); va pasar ['post] => $post]
+            ]);
+        }
+
+
+
+        // Metodo para eliminar una pelicula.
+        public function destroy ($pelicula)
+        {
+            // Buscar una pelicula por el id.
+            $pelicula = Pelicula::find($pelicula);
+
+            $pelicula->delete();
+
+            return redirect('/peliculas');
+        }
 }
