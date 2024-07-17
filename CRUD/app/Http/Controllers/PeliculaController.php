@@ -49,6 +49,7 @@ class PeliculaController extends Controller
         $pelicula->fecha_publicacion = $request->fecha_publicacion;
 
         $pelicula->save();
-        return $pelicula;
+
+        return view('peliculas.show', compact('pelicula'));
     }
 }
