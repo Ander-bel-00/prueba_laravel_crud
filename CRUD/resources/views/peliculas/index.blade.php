@@ -24,6 +24,8 @@
                 </th>
             </tr>
         </thead>
+        @foreach ($peliculas as $pelicula)
+    
         <tbody>
             @foreach ($peliculas as $pelicula)
             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -46,6 +48,7 @@
             </tr>
             @endforeach
         </tbody>
+        @endforeach
     </table>
    
 

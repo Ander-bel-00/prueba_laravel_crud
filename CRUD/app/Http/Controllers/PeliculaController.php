@@ -32,6 +32,27 @@ class PeliculaController extends Controller
         return redirect('/peliculas');
     }
 
+
+    public function edit($pelicula){
+        $pelicula = Pelicula::find($pelicula);
+
+        return view('peliculas.edit', compact('pelicula'));
+    }
+
+    public function update(Request $request, $pelicula)
+    {
+        $pelicula = Pelicula::find($pelicula);
+
+        $pelicula->titulo = $request->titulo;
+        $pelicula->categoria = $request->categoria;
+        $pelicula->sinopsis = $request->sinopsis;
+        $pelicula->fecha_publicacion = $request->fecha_publicacion;
+
+        $pelicula->save();
+
+        return view('peliculas.show', compact('pelicula'));
+    }
+
         // Metodo para mostrar una pelicula.
         public function show($pelicula)
         {
