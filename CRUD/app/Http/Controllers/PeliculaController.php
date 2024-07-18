@@ -64,7 +64,7 @@ class PeliculaController extends Controller
 
 
             
-            return Inertia::render('Show', compact('pelicula'));
+            return Inertia::render('ShowPelicula', compact('pelicula'));
 
             // Pasar variables del metodo a la vista.
             // return view('peliculas.show', [
