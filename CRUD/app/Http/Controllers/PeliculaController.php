@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Carbon\Carbon;
 
 class PeliculaController extends Controller
 {
@@ -34,24 +35,28 @@ class PeliculaController extends Controller
     }
 
 
-    public function edit($pelicula){
+    public function edit($pelicula)
+    {
         $pelicula = Pelicula::find($pelicula);
-
-        return view('peliculas.edit', compact('pelicula'));
+    
+        // Convertir la fecha al formato Y-m-d
+        $pelicula->fecha_publicacion = Carbon::parse($pelicula->fecha_publicacion)->format('Y-m-d');
+    
+        return Inertia::render('EditPelicula', compact('pelicula'));
     }
 
     public function update(Request $request, $pelicula)
     {
         $pelicula = Pelicula::find($pelicula);
-
+    
         $pelicula->titulo = $request->titulo;
         $pelicula->categoria = $request->categoria;
         $pelicula->sinopsis = $request->sinopsis;
-        $pelicula->fecha_publicacion = $request->fecha_publicacion;
-
+        $pelicula->fecha_publicacion = Carbon::createFromFormat('Y-m-d', $request->fecha_publicacion);
+    
         $pelicula->save();
-
-        return view('peliculas.show', compact('pelicula'));
+    
+        return Inertia::render('ShowPelicula', compact('pelicula'));
     }
 
         // Metodo para mostrar una pelicula.

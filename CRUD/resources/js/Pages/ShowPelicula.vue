@@ -1,5 +1,5 @@
 <template>
-    <h1 class="text-center font-bold text-2xl">Información de la pelicula: {{ pelicula.titulo }}</h1>
+    <h1 class="text-center font-bold text-2xl">Información de la película: {{ pelicula.titulo }}</h1>
 
     <a href="/peliculas" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Go back</a>
     <div class="flex justify-center items-center mt-3">
@@ -41,7 +41,7 @@
                                     Fecha de Publicación
                                 </p>
                                 <p class="text-sm text-gray-500 truncate dark:text-gray-400">
-                                    {{ pelicula.fecha_publicacion }}
+                                    {{ formattedFechaPublicacion }}
                                 </p>
                             </div>
                         </div>
@@ -68,6 +68,10 @@
 
 <script>
 import axios from 'axios';
+import moment from 'moment';
+import 'moment/locale/es';
+
+moment.locale('es'); // Configurar la localización a 'es' globalmente
 
 export default {
     name: 'ShowPelicula',
@@ -77,18 +81,22 @@ export default {
             required: true
         }
     },
+    computed: {
+        formattedFechaPublicacion() {
+            return moment(this.pelicula.fecha_publicacion).format('LL');
+        }
+    },
     methods: {
         deletePelicula() {
             try {
                 if (confirm('Are you sure you want to delete this movie?')) {
-                axios.delete(`/peliculas/${this.pelicula.id}`, {
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    }
+                    axios.delete(`/peliculas/${this.pelicula.id}`, {
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        }
+                    });
+                    this.$inertia.visit('/peliculas');
                 }
-                )
-                this.$inertia.visit('/peliculas');
-            }
             } catch (error) {
                 console.error('There was an error deleting the movie:', error);
             }
