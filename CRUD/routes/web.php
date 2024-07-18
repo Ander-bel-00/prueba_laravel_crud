@@ -10,19 +10,3 @@ Route::get('/', function () {
 });
 
 Route::resource('/peliculas', PeliculaController::class)->names('peliculas');
-
-
-// Route::get('/prueba', function() {
-    
-//     $pelicula = new Pelicula;
-
-//     $pelicula->titulo = 'Mortal Kombat';
-//     $pelicula->categoria = 'Accion';
-//     $pelicula->sinopsis = 'jaduken';
-//     $pelicula->fecha_publicacion = '2025-04-26';
-
-//     $pelicula->save();
-
-//     return $pelicula;
-
-// });

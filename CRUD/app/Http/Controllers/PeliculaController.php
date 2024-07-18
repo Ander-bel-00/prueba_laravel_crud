@@ -10,14 +10,14 @@ class PeliculaController extends Controller
 {
     // Metodo para mostrar todas las peliculas.
     public function index(){
-        $peliculas = Pelicula::orderBy('fecha_publicacion', 'desc')->paginate(10);
+        $peliculas = Pelicula::orderBy('id', 'desc')->get();
         
         return Inertia::render('PeliculasIndex', compact('peliculas'));
     }
 
     // Metodo para mostrar el formulario de creación de peliculas.
     public function create(){
-        return view('peliculas.create');
+        return Inertia::render('CreatePelicula');
     }
 
     // Metodo para registrar una pelicula.
@@ -61,7 +61,7 @@ class PeliculaController extends Controller
             $pelicula = Pelicula::find($pelicula);
     
             // Pasar variables del metodo a la vista.
-            return view('peliculas.show', [
+            return Inertia::render('ShowPelicula', [
                 // Pasar variable con el nombre post y con el valor que se le defina a esa variable.
                 'pelicula' => $pelicula,
     
