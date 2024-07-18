@@ -17,7 +17,7 @@ class PeliculaController extends Controller
 
     // Metodo para mostrar el formulario de creación de peliculas.
     public function create(){
-        return view('peliculas.create');
+        return Inertia::render('CreatePelicula');
     }
 
     // Metodo para registrar una pelicula.

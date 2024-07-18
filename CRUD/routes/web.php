@@ -12,8 +12,6 @@ Route::get('/', function () {
 Route::resource('/peliculas', PeliculaController::class)->names('peliculas');
 
 
-
-
 // Route::get('/prueba', function() {
     
 //     $pelicula = new Pelicula;
