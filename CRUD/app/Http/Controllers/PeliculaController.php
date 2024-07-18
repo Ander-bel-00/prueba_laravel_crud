@@ -4,14 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelicula;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class PeliculaController extends Controller
 {
     // Metodo para mostrar todas las peliculas.
     public function index(){
-        $peliculas = Pelicula::orderBy('fecha_publicacion', 'desc')->paginate(10);
-
-        return view('peliculas.index', compact('peliculas'));
+        $peliculas = Pelicula::orderBy('id', 'asc')->get();
+        
+        return Inertia::render('PeliculasIndex', compact('peliculas'));
     }
 
     // Metodo para mostrar el formulario de creación de peliculas.
@@ -36,7 +37,9 @@ class PeliculaController extends Controller
     public function edit($pelicula){
         $pelicula = Pelicula::find($pelicula);
 
-        return view('peliculas.edit', compact('pelicula'));
+        return Inertia::render('Editar', compact('pelicula'));
+        
+        // return view('peliculas.edit', compact('pelicula'));
     }
 
     public function update(Request $request, $pelicula)
@@ -58,14 +61,18 @@ class PeliculaController extends Controller
         {
             // Buscar una pelicula por id (el id se pasa desde la vista peliculas).
             $pelicula = Pelicula::find($pelicula);
-    
+
+
+            
+            return Inertia::render('Show', compact('pelicula'));
+
             // Pasar variables del metodo a la vista.
-            return view('peliculas.show', [
-                // Pasar variable con el nombre post y con el valor que se le defina a esa variable.
-                'pelicula' => $pelicula,
+            // return view('peliculas.show', [
+            //     // Pasar variable con el nombre post y con el valor que se le defina a esa variable.
+            //     'pelicula' => $pelicula,
     
-                // Otra forma en lugar de especicar el array: ,compact('post); va pasar ['post] => $post]
-            ]);
+            //     // Otra forma en lugar de especicar el array: ,compact('post); va pasar ['post] => $post]
+            // ]);
         }
 
 

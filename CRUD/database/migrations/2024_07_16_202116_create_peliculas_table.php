@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('titulo');
             $table->string('categoria');
             $table->string('sinopsis');
-            $table->timestamp('fecha_publicacion')->nullable();
+            $table->date('fecha_publicacion')->nullable()->format('d/m/Y');
 
             $table->timestamps();
         });

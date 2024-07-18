@@ -20,7 +20,7 @@ class PeliculaFactory extends Factory
             'titulo' => fake()->sentence(),
             'categoria' => fake()->text(100),
             'sinopsis' => fake()->text(50),
-            'fecha_publicacion' => fake()->dateTime(),
+            'fecha_publicacion' => fake()->date(),
         ];
     }
 }

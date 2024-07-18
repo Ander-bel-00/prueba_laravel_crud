@@ -24,6 +24,7 @@
                 </th>
             </tr>
         </thead>
+        @foreach ($peliculas as $pelicula)
     
         <tbody>
             @foreach ($peliculas as $pelicula)
@@ -47,7 +48,7 @@
             </tr>
             @endforeach
         </tbody>
-
+        @endforeach
     </table>
    
 
